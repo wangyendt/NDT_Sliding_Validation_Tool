@@ -1,0 +1,58 @@
+﻿<Window x:Class="NDT_Sliding_Validation_Tool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NDT_Sliding_Validation_Tool"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid>
+        <RadioButton Content="Make faked rawdata" HorizontalAlignment="Left" Margin="27,28,0,0" VerticalAlignment="Top"
+                     GroupName="signal" IsChecked="True" />
+        <Label Content="σ of noise (μV):" HorizontalAlignment="Left" Margin="47,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.85,-0.868"/>
+        <Label Content="max slope of drift (μV):" HorizontalAlignment="Left" Margin="47,91,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.85,-0.868"/>
+        <Label Content="momentum of drift:" HorizontalAlignment="Left" Margin="47,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.85,-0.868"/>
+        <TextBox x:Name="tbSignalSigma" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="187,55,0,0" TextWrapping="Wrap"
+                 Text="2.20" Height="24" Width="55" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox x:Name="tbSignalDriftMax" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="187,92,0,0" TextWrapping="Wrap"
+            Text="0.20" Height="24" Width="55" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox x:Name="tbSignalDriftMomentum" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="187,132,0,0" TextWrapping="Wrap"
+            Text="0.80" Height="24" Width="55" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Button Content="Import" HorizontalAlignment="Left" Margin="167,174,0,0" VerticalAlignment="Top" Width="75" AutomationProperties.Name="btnImportRawdata" Click="Button_Click"/>
+        <RadioButton x:Name="rdbSignal" Content="Import rawdata" HorizontalAlignment="Left" Margin="27,177,0,0" VerticalAlignment="Top"
+                     GroupName="signal" IsChecked="False" IsEnabled="False" />
+        <RadioButton Content="Make faked signal model" HorizontalAlignment="Left" Margin="26,262,0,0" VerticalAlignment="Top"
+            GroupName="model" IsChecked="True" />
+        <Label Content="peak of little-finger (μV/100g):" HorizontalAlignment="Left" Margin="49,282,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.85,-0.868"/>
+        <Label Content="peak of ring-finger (μV/100g):" HorizontalAlignment="Left" Margin="49,312,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.85,-0.868"/>
+        <Label Content="gap (mm):" HorizontalAlignment="Left" Margin="49,342,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.85,-0.868"/>
+        <Label Content="decay coefficient:" HorizontalAlignment="Left" Margin="49,372,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.85,-0.868"/>
+        <RadioButton x:Name="rdbModel" Content="Import signal model" HorizontalAlignment="Left" Margin="27,415,0,0" VerticalAlignment="Top"
+            GroupName="model" IsChecked="False" IsEnabled="False" />
+        <Button Content="Import" HorizontalAlignment="Left" Margin="187,411,0,0" VerticalAlignment="Top" Width="75" AutomationProperties.Name="btnImportModel" Click="Button_Click_1"/>
+        <Label Content="σ of horizontal noise:" HorizontalAlignment="Left" Margin="47,495,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.85,-0.868"/>
+        <Label Content="σ of vertical noise:" HorizontalAlignment="Left" Margin="47,525,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.85,-0.868"/>
+        <TextBox x:Name="tbModelLFpeak" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="260,282,0,0" TextWrapping="Wrap"
+            Text="60.00" Height="24" Width="55" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox x:Name="tbModelRFpeak" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="260,312,0,0" TextWrapping="Wrap"
+            Text="200.00" Height="24" Width="55" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox x:Name="tbModelGap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="260,343,0,0" TextWrapping="Wrap"
+            Text="8.00" Height="24" Width="55" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox x:Name="tbModelDecay" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="260,373,0,0" TextWrapping="Wrap"
+            Text="5.00" Height="24" Width="55" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox x:Name="tbModelHNoise" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="260,496,0,0" TextWrapping="Wrap"
+            Text="1.00" Height="24" Width="55" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox x:Name="tbModelVNoise" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="260,526,0,0" TextWrapping="Wrap"
+            Text="5.00" Height="24" Width="55" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Button Content="Analyze" HorizontalAlignment="Left" Margin="301,90,0,0" VerticalAlignment="Top" Width="75" Height="70" AutomationProperties.Name="btnAnalyze" Click="BtnAnalyze_Click" />
+        <RichTextBox HorizontalAlignment="Left" Height="522" Margin="438,28,0,0" VerticalAlignment="Top" Width="323" Name="rtbLog">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text=""/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <TextBlock x:Name="tbModelPath" HorizontalAlignment="Left" Margin="49,458,0,0" TextWrapping="NoWrap" Text="Model Path" VerticalAlignment="Top" Width="365" FlowDirection="RightToLeft" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+        <TextBlock x:Name="tbSignalPath" HorizontalAlignment="Left" Margin="49,217,0,0" TextWrapping="NoWrap" Text="Signal Path" VerticalAlignment="Top" Width="365" FlowDirection="RightToLeft" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+    </Grid>
+</Window>
